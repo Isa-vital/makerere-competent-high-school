@@ -30,7 +30,7 @@
                 <ul>
                     <li class="active"><a href="index.html" target="blank">Home</a></li>
                     <li><a href="registration.html" target="blank">Join Us</a></li>
-                    <li><a href="resources.html" target="blank">Resources</a></li>
+                    <li><a href="resources.html" target="blank">Gallery</a></li>
                     <li><a href="news.html" target="blank">News</a></li>
                     <li><a href="alumni.html" target="blank">Alumni</a></li>
                     <li><a href="contact.html" target="blank">Contact Us</a></li>
@@ -45,7 +45,7 @@
                 <ul class="nav-links" id="nav-links">
                     <li class="active"><a href="index.html" target="blank">Home</a></li>
                     <li><a href="registration.html" target="blank">Join Us</a></li>
-                    <li><a href="resources.html" target="blank">Resources</a></li>
+                    <li><a href="resources.html" target="blank">Gallery</a></li>
                     <li><a href="news.html" target="blank">News</a></li>
                     <li><a href="alumni.html" target="blank">Alumni</a></li>
                     <li><a href="contact.html" target="blank">Contact Us</a></li>
@@ -53,5 +53,159 @@
                 <script src="script.js"></script>
             </nav>
         </div>
-        
+        <div class="alumni-hero">
+            <h1>Alumni Network</h1>
+            <p>Stay Connected, Stay Involved - Join our thriving community of graduates who continue to make us proud.</p>
+        </div>
+    
+        <div class="alumni-container">
+            <!-- Notable Alumni Section -->
+            <section class="alumni-section">
+                <h2 class="section-title">Notable Alumni</h2>
+                <div class="alumni-grid">
+                    <div class="alumni-card">
+                        <div class="alumni-image">John Doe</div>
+                        <div class="alumni-info">
+                            <h3>John Doe</h3>
+                            <div class="batch-year">Class of 2010</div>
+                            <p>CEO, Tech Innovations Inc.</p>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <div class="alumni-image">Jane Smith</div>
+                        <div class="alumni-info">
+                            <h3>Jane Smith</h3>
+                            <div class="batch-year">Class of 2005</div>
+                            <p>Award-winning Researcher</p>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <div class="alumni-image">Mike Johnson</div>
+                        <div class="alumni-info">
+                            <h3>Mike Johnson</h3>
+                            <div class="batch-year">Class of 2000</div>
+                            <p>Olympic Gold Medalist</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Upcoming Events Section -->
+            <section class="alumni-section">
+                <h2 class="section-title">Upcoming Events</h2>
+                <div class="events-container">
+                    <div class="event-card">
+                        <div class="event-date">Dec 15, 2024</div>
+                        <h3>Annual Alumni Meet</h3>
+                        <p>Join us for a day of networking and reminiscing</p>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">Jan 20, 2025</div>
+                        <h3>Career Fair</h3>
+                        <p>Connect with current students and share your experiences</p>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">Mar 5, 2025</div>
+                        <h3>Mentorship Program</h3>
+                        <p>Guide the next generation of leaders</p>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Testimonials Section -->
+            <section class="alumni-section">
+                <h2 class="section-title">Alumni Voices</h2>
+                <div class="testimonials">
+                    <div class="testimonial-card">
+                        <p>"The education and values I received here have been instrumental in my success."</p>
+                        <div class="alumni-info">
+                            <h3>Sarah Williams</h3>
+                            <div class="batch-year">Class of 2015</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Proud to be part of this amazing institution that shaped my future."</p>
+                        <div class="alumni-info">
+                            <h3>David Chen</h3>
+                            <div class="batch-year">Class of 2008</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Alumni Directory Section -->
+            <section class="section">
+                <h2 class="section-title">Alumni Directory</h2>
+                <div class="search-container">
+                    <input type="text" class="search-box" placeholder="Search alumni by name, batch, or profession...">
+                </div>
+                <table class="directory-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Batch</th>
+                            <th>Profession</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>2010</td>
+                            <td>Software Engineer</td>
+                            <td>San Francisco</td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>2005</td>
+                            <td>Research Scientist</td>
+                            <td>Boston</td>
+                        </tr>
+                        <tr>
+                            <td>Mike Johnson</td>
+                            <td>2000</td>
+                            <td>Entrepreneur</td>
+                            <td>New York</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    
+        <!-- Connect Section -->
+        <section class="connect-section">
+            <h2>Stay Connected</h2>
+            <p>Follow us on social media for updates and networking opportunities</p>
+            <div class="social-links">
+                <a href="#" title="Facebook">f</a>
+                <a href="#" title="Twitter">t</a>
+                <a href="#" title="LinkedIn">in</a>
+                <a href="#" title="Instagram">ig</a>
+            </div>
+        </section>
+    
+        <script>
+            // Search functionality
+            const searchBox = document.querySelector('.search-box');
+            const tableRows = document.querySelectorAll('.directory-table tbody tr');
+    
+            searchBox.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+    
+                tableRows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                });
+            });
+    
+            // Smooth scroll for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
     </header>
