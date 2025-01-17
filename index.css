@@ -19,7 +19,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0px;
+    margin: 0px auto;
     color: #1968df;
     box-shadow: 3px 3px 5px rgba(0, 0.1, 0.2, 0.4);
     
