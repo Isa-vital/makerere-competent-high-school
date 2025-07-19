@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Menu Test - Makerere Competent High School</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            padding-top: 100px;
+        }
+        
+        .test-content {
+            min-height: 100vh;
+            padding: 50px 0;
+        }
+        
+        .test-section {
+            background: #f8f9fa;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 4px solid #1a472a;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <!-- Top Header with Contact Info -->
+        <div class="top-header">
+            <div class="container">
+                <div class="top-header-content">
+                    <div class="contact-info">
+                        <span><i class="fas fa-phone"></i> +256 123 456 789</span>
+                        <span><i class="fas fa-envelope"></i> info@competent.ac.ug</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Makerere Hill, Kampala</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" target="_blank" rel="noopener" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header with Logo and Navigation -->
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="assets/images/competentlogo.jpeg" alt="Makerere Competent High School Logo">
+                        <div class="logo-text">
+                            <h1>Makerere Competent High School</h1>
+                            <p>Quality Education for A Bright Future</p>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="navbar-toggler mobile-menu-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav nav-menu ms-auto">
+                        <li class="nav-item"><a href="index.php" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="about.php" class="nav-link">About Us</a></li>
+                        <li class="nav-item"><a href="academics.php" class="nav-link">Academics</a></li>
+                        <li class="nav-item"><a href="admissions.php" class="nav-link">Admissions</a></li>
+                        <li class="nav-item"><a href="gallery.php" class="nav-link">Gallery</a></li>
+                        <li class="nav-item"><a href="news.php" class="nav-link">News & Events</a></li>
+                        <li class="nav-item"><a href="alumni.php" class="nav-link">Alumni</a></li>
+                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Test Content -->
+    <div class="test-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 style="color: #1a472a; text-align: center; margin-bottom: 30px;">
+                        <i class="fas fa-mobile-alt"></i> Mobile Menu Test Page
+                    </h1>
+
+                    <div class="test-section">
+                        <h3><i class="fas fa-check-circle" style="color: #28a745;"></i> Test Instructions</h3>
+                        <ol>
+                            <li><strong>Resize your browser</strong> to mobile size (below 992px width) or open on mobile device</li>
+                            <li><strong>Click the hamburger menu</strong> (three lines) in the top-right corner</li>
+                            <li><strong>Verify that the menu opens</strong> and shows all navigation links</li>
+                            <li><strong>Click on any menu item</strong> to verify the menu closes automatically</li>
+                            <li><strong>Try clicking outside the menu</strong> to verify it closes</li>
+                        </ol>
+                    </div>
+
+                    <div class="test-section">
+                        <h3><i class="fas fa-info-circle" style="color: #17a2b8;"></i> Expected Behavior</h3>
+                        <ul>
+                            <li>✅ Hamburger menu should be visible on screens smaller than 992px</li>
+                            <li>✅ Menu should slide down smoothly when clicked</li>
+                            <li>✅ Menu should have a translucent background with blur effect</li>
+                            <li>✅ Menu items should be centered and have hover effects</li>
+                            <li>✅ Menu should close when clicking on any link or outside the menu</li>
+                            <li>✅ Bootstrap collapse functionality should work reliably</li>
+                        </ul>
+                    </div>
+
+                    <div class="test-section">
+                        <h3><i class="fas fa-tools" style="color: #fd7e14;"></i> Technical Implementation</h3>
+                        <p>This mobile menu uses <strong>Bootstrap 5.3</strong> for reliable cross-device compatibility with custom styling overrides:</p>
+                        <ul>
+                            <li><strong>Bootstrap Navbar:</strong> Handles the collapse/expand functionality</li>
+                            <li><strong>Custom CSS:</strong> Provides the school's brand styling and animations</li>
+                            <li><strong>JavaScript:</strong> Adds enhanced functionality for auto-closing menu</li>
+                            <li><strong>Responsive Design:</strong> Adapts to all screen sizes including Samsung A20</li>
+                        </ul>
+                    </div>
+
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading"><i class="fas fa-thumbs-up"></i> Success!</h4>
+                        <p>If you can see this page and the hamburger menu is working properly, the mobile navigation has been successfully implemented!</p>
+                        <hr>
+                        <p class="mb-0">You can now safely use this implementation across the entire website.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Test console logging
+        console.log('Mobile Menu Test Page Loaded');
+
+        // Initialize mobile menu
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing mobile menu...');
+
+            // Test Bootstrap functionality
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+
+            if (navbarToggler && navbarCollapse) {
+                console.log('✅ Bootstrap navbar elements found');
+
+                navbarToggler.addEventListener('click', function() {
+                    console.log('🍔 Hamburger menu clicked');
+                });
+
+                navbarCollapse.addEventListener('shown.bs.collapse', function() {
+                    console.log('✅ Menu opened successfully');
+                });
+
+                navbarCollapse.addEventListener('hidden.bs.collapse', function() {
+                    console.log('✅ Menu closed successfully');
+                });
+            } else {
+                console.error('❌ Bootstrap navbar elements not found');
+            }
+        });
+    </script>
+</body>
+
+</html>

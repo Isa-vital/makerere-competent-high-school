@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsung A20 Carousel Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 9999;
+        }
+        
+        .hero-carousel {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+        }
+        
+        .carousel-slide img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            max-width: 350px;
+            width: 90%;
+        }
+        
+        .hero-content h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+        }
+        
+        .hero-content p {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+        
+        .btn {
+            display: block;
+            width: 80%;
+            max-width: 200px;
+            margin: 10px auto;
+            padding: 15px 20px;
+            background: #4da6ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-align: center;
+            border: 2px solid #4da6ff;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            color: #4da6ff;
+            font-size: 1.2rem;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 15;
+        }
+        
+        .carousel-prev {
+            left: 15px;
+        }
+        
+        .carousel-next {
+            right: 15px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 15;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid white;
+            cursor: pointer;
+        }
+        
+        .indicator.active {
+            background: #4da6ff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-info">Samsung A20 Test</div>
+
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <img src="assets/images/gate.jpeg" alt="School Gate">
+                <div class="hero-content">
+                    <h2>Welcome to Excellence</h2>
+                    <p>Nurturing future leaders through quality education.</p>
+                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="assets/images/microscope.jpg" alt="Science Lab">
+                <div class="hero-content">
+                    <h2>Modern Laboratory</h2>
+                    <p>State-of-the-art facilities for learning.</p>
+                    <a href="#" class="btn">Our Programs</a>
+                    <a href="#" class="btn btn-secondary">View Gallery</a>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="assets/images/WhatsApp Image 2024-11-13 at 09.24.10.jpeg" alt="Students">
+                <div class="hero-content">
+                    <h2>Join Our Community</h2>
+                    <p>Be part of excellence and growth.</p>
+                    <a href="#" class="btn">Apply Now</a>
+                    <a href="#" class="btn btn-secondary">Latest News</a>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-nav carousel-prev" onclick="previousSlide()">❮</button>
+        <button class="carousel-nav carousel-next" onclick="nextSlide()">❯</button>
+
+        <div class="carousel-indicators">
+            <button class="indicator active" onclick="currentSlide(1)"></button>
+            <button class="indicator" onclick="currentSlide(2)"></button>
+            <button class="indicator" onclick="currentSlide(3)"></button>
+        </div>
+    </section>
+
+    <div style="padding: 20px; background: white; text-align: center;">
+        <h3>Test Instructions</h3>
+        <p>1. Check if all 3 slides are visible when you click arrows</p>
+        <p>2. Verify buttons are properly aligned and clickable</p>
+        <p>3. Ensure text is readable on all slides</p>
+        <p>4. Test touch gestures work properly</p>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showSlide(index) {
+            // Remove active from all
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Normalize index
+            if (index >= slides.length) currentSlideIndex = 0;
+            if (index < 0) currentSlideIndex = slides.length - 1;
+
+            // Show current
+            slides[currentSlideIndex].classList.add('active');
+            indicators[currentSlideIndex].classList.add('active');
+
+            console.log('Current slide:', currentSlideIndex);
+        }
+
+        function nextSlide() {
+            currentSlideIndex++;
+            showSlide(currentSlideIndex);
+        }
+
+        function previousSlide() {
+            currentSlideIndex--;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto-advance for testing
+        setInterval(nextSlide, 4000);
+
+        console.log('Samsung A20 carousel test loaded');
+    </script>
+</body>
+
+</html>
