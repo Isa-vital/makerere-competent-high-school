@@ -4,12 +4,12 @@
 /* CSS Custom Properties - Color Variables */
 
 :root {
-    --primary-blue: #4da6ff;
-    --neutral-white: #ffffff;
+    --primary-blue: #1e3c72;
+    --secondary-blue: #2a5298;
     --accent-green: #66cc66;
     --accent-yellow: #ffd700;
-    --text-dark: #333333;
-    --text-light: #666666;
+    --text-dark: #333;
+    --text-light: #666;
     --background-light: #f8f9fa;
 }
 
@@ -35,16 +35,15 @@ body {
 .header {
     background: var(--neutral-white);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 1000;
 }
 
 .top-header {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, #3399ff 100%);
-    color: var(--neutral-white);
-    padding: 0.6rem 0;
-    font-size: 0.85rem;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1002;
 }
 
 .container {
@@ -121,86 +120,310 @@ body {
     gap: 15px;
 }
 
-.logo img {
-    width: 70px;
-    height: 70px;
-    border-radius: 12px;
-    border: 3px solid var(--primary-blue);
+.logo-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
-.logo img:hover {
+.logo-img:hover {
     transform: scale(1.05);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.logo-text {
+    margin-left: 0.75rem;
 }
 
 .logo-text h1 {
-    font-size: 2rem;
+    font-size: 1rem !important;
     font-weight: 700;
-    margin-bottom: 4px;
-    color: var(--primary-blue);
-    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 2px !important;
+    color: white;
 }
 
 .logo-text p {
-    font-size: 0.95rem;
-    color: var(--accent-green);
-    font-weight: 500;
-    font-style: italic;
+    font-size: 0.75rem !important;
+    line-height: 1.1;
+    opacity: 0.85;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.mobile-logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    object-fit: cover;
 }
 
 
 /* Navigation Styles */
 
-.navbar {
-    background: var(--neutral-white);
-    border-top: 1px solid rgba(77, 166, 255, 0.1);
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.navbar.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-top: 1px solid rgba(77, 166, 255, 0.2);
-}
-
-.nav-menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-}
-
-.nav-menu li {
+.site-header {
     position: relative;
+    z-index: 1000;
 }
 
-.nav-menu a {
-    color: var(--text-dark);
-    text-decoration: none;
-    padding: 18px 24px;
-    display: block;
+
+/* Top Header */
+
+.top-header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1002;
+}
+
+
+/* Main Navigation - Desktop */
+
+.navbar {
+    padding: 0.75rem 0;
     transition: all 0.3s ease;
+    background: white !important;
+    position: relative;
+    z-index: 1001;
+}
+
+
+/* Desktop: Navigation becomes sticky on scroll */
+
+@media (min-width: 992px) {
+    .navbar {
+        position: sticky !important;
+        top: 0 !important;
+    }
+    .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+}
+
+
+/* Mobile: Keep navigation below top header */
+
+@media (max-width: 991.98px) {
+    .navbar {
+        position: sticky !important;
+        top: 0 !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    }
+}
+
+
+/* Logo and text styling */
+
+.logo-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.logo-text {
+    margin-left: 0.75rem;
+}
+
+.logo-text h1 {
+    font-size: 1rem !important;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 2px !important;
+    color: white;
+}
+
+.logo-text p {
+    font-size: 0.75rem !important;
+    line-height: 1.1;
+    opacity: 0.85;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.mobile-logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+
+/* Contact info and social links styling */
+
+.contact-info small {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+.contact-info i {
+    color: #ffd700;
+    width: 12px;
+}
+
+.social-links {
+    gap: 8px !important;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffd700;
+    transform: translateY(-2px);
+}
+
+
+/* Navigation Links */
+
+.navbar-nav {
+    gap: 0.5rem;
+}
+
+.nav-link {
     font-weight: 500;
     font-size: 0.95rem;
+    color: #333 !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-bottom: 3px solid transparent;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-    color: var(--primary-blue);
-    background: linear-gradient(45deg, rgba(77, 166, 255, 0.05), rgba(102, 204, 102, 0.05));
-    border-bottom-color: var(--primary-blue);
+.nav-link:hover {
+    color: var(--primary-blue, #1e3c72) !important;
+    background: rgba(30, 60, 114, 0.05);
+    transform: translateY(-1px);
+}
+
+.nav-link.active {
+    color: var(--primary-blue, #1e3c72) !important;
+    background: rgba(30, 60, 114, 0.1);
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: var(--accent-yellow, #ffd700);
+    border-radius: 2px;
+}
+
+
+/* CTA Button */
+
+.btn-primary {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+}
+
+
+/* Breadcrumb spacing */
+
+.main-content {
+    margin-top: 0;
+}
+
+
+/* Ensure proper spacing for larger screens */
+
+@media (min-width: 992px) {
+    .navbar .container {
+        max-width: 1400px;
+        padding: 0 3rem;
+    }
+    .nav-menu {
+        gap: 1rem;
+    }
+    .nav-menu a {
+        padding: 1.4rem 2.2rem;
+        font-size: 0.94rem;
+        letter-spacing: 1.2px;
+    }
+}
+
+
+/* Ultra-wide screens optimization */
+
+@media (min-width: 1400px) {
+    .navbar .container {
+        max-width: 1600px;
+        padding: 0 4rem;
+    }
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    .nav-menu a {
+        padding: 1.6rem 2.8rem;
+        font-size: 0.96rem;
+        letter-spacing: 1.4px;
+    }
+}
+
+
+/* Tablet and medium screens */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar {
+        position: fixed !important;
+    }
+    .navbar .container {
+        padding: 0 2rem;
+    }
+    .nav-menu a {
+        padding: 1.1rem 1.4rem;
+        font-size: 0.88rem;
+        letter-spacing: 0.8px;
+    }
+    .main-content {
+        margin-top: 75px;
+    }
 }
 
 .mobile-menu-toggle {

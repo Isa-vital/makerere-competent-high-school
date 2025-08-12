@@ -97,12 +97,22 @@ function toggleMobileMenu() {
 // Scroll Effects (navbar background, active menu items)
 function initScrollEffects() {
     const header = document.querySelector('.header');
+    const navbar = document.querySelector('.navbar');
     const navLinks = document.querySelectorAll('.nav-menu a');
 
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset;
 
-        // Add background to header on scroll
+        // Add background to navbar on scroll for larger screens
+        if (navbar && window.innerWidth >= 768) {
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Legacy header scroll effect for compatibility
         if (header) {
             if (scrollTop > 100) {
                 header.classList.add('scrolled');
@@ -113,6 +123,25 @@ function initScrollEffects() {
 
         // Update active navigation item based on scroll position
         updateActiveNavItem();
+    });
+
+    // Handle window resize to maintain navbar behavior
+    window.addEventListener('resize', function() {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            if (window.innerWidth < 768) {
+                // Remove scrolled class on mobile
+                navbar.classList.remove('scrolled');
+            } else {
+                // Re-evaluate scroll position on larger screens
+                const scrollTop = window.pageYOffset;
+                if (scrollTop > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        }
     });
 }
 

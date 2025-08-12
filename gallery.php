@@ -168,7 +168,7 @@ try {
                 <div class="highlight-card" style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
                     <i class="fas fa-graduation-cap" style="font-size: 3rem; color: #1a472a; margin-bottom: 1rem;"></i>
                     <h4 style="color: #1a472a; margin-bottom: 1rem;">Academic Excellence</h4>
-                    <p style="color: #666; line-height: 1.6;">Classroom moments, graduations, and academic ceremonies showcasing our commitment to educational excellence.</p>
+                    <p style="color: #666; line-height: 1.6;">Classroom moments and academic ceremonies showcasing our commitment to educational excellence.</p>
                     <button class="btn" onclick="filterGallery('academics')" style="margin-top: 1rem; padding: 8px 16px; font-size: 0.9rem;">
                         View Academic Photos
                     </button>

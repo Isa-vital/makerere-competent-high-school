@@ -113,7 +113,7 @@ include 'includes/header.php';
             </p>
             <div data-aos="fade-up" data-aos-delay="400">
                 <a href="#register" class="btn">Join MACOSA Network</a>
-                <a href="#success-stories" class="btn-secondary">Read Success Stories</a>
+                <a href="#success-stories" class="btn">Read Success Stories</a>
             </div>
         </div>
     </div>
