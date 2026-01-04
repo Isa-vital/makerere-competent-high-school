@@ -3,17 +3,19 @@
 // Update these settings according to your hosting environment
 
 // Database Settings
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'competent_db');
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'school_db');
+// port number
+define('DB_PORT', '3308');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'Today123');
 define('DB_CHARSET', 'utf8mb4');
 
 // Site Settings
 define('SITE_NAME', 'Makerere Competent High School');
-define('SITE_URL', 'http://localhost/competent');
-define('SITE_EMAIL', 'info@makererecompetent.edu.ug');
-define('SITE_PHONE', '+256 414 532 123');
+define('SITE_URL', '');
+define('SITE_EMAIL', 'info@makererecompetenthighschool.com');
+define('SITE_PHONE', '+256 704 292872');
 define('SITE_ADDRESS', 'Buhimba, Kikuube, Uganda');
 
 // File Upload Settings
@@ -22,7 +24,7 @@ define('MAX_FILE_SIZE', 5242880); // 5MB in bytes
 define('ALLOWED_IMAGE_TYPES', array('jpg', 'jpeg', 'png', 'gif'));
 
 // Admin Settings
-define('ADMIN_EMAIL', 'admin@makererecompetent.edu.ug');
+define('ADMIN_EMAIL', 'admin@makererecompetenthighschool.com');
 define('SESSION_TIMEOUT', 3600); // 1 hour
 
 // Security Settings
@@ -44,7 +46,7 @@ date_default_timezone_set('Africa/Kampala');
 
 // Database Connection
 try {
-    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+    $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
     $pdo = new PDO($dsn, DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -56,7 +58,8 @@ try {
 // Auto-create database tables if they don't exist
 createTables($pdo);
 
-function createTables($pdo) {
+function createTables($pdo)
+{
     // News table
     $newsTable = "
         CREATE TABLE IF NOT EXISTS news (
@@ -72,7 +75,7 @@ function createTables($pdo) {
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )
     ";
-    
+
     // Gallery table
     $galleryTable = "
         CREATE TABLE IF NOT EXISTS gallery (
@@ -86,7 +89,7 @@ function createTables($pdo) {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ";
-    
+
     // Contact messages table
     $contactTable = "
         CREATE TABLE IF NOT EXISTS contact_messages (
@@ -100,7 +103,7 @@ function createTables($pdo) {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ";
-    
+
     // Admin users table
     $adminTable = "
         CREATE TABLE IF NOT EXISTS admin_users (
@@ -115,7 +118,7 @@ function createTables($pdo) {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ";
-    
+
     // Site settings table
     $settingsTable = "
         CREATE TABLE IF NOT EXISTS site_settings (
@@ -126,22 +129,22 @@ function createTables($pdo) {
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )
     ";
-    
+
     try {
         $pdo->exec($newsTable);
         $pdo->exec($galleryTable);
         $pdo->exec($contactTable);
         $pdo->exec($adminTable);
         $pdo->exec($settingsTable);
-        
+
         // Insert default admin user if no users exist
         $stmt = $pdo->query("SELECT COUNT(*) FROM admin_users");
         if ($stmt->fetchColumn() == 0) {
             $hashedPassword = password_hash('admin123', PASSWORD_DEFAULT);
             $pdo->exec("INSERT INTO admin_users (username, password, email, full_name, role) 
-                       VALUES ('admin', '$hashedPassword', 'admin@makererecompetent.edu.ug', 'Administrator', 'admin')");
+                       VALUES ('admin', '$hashedPassword', 'admin@makererecompetenthighschool.com', 'Administrator', 'admin')");
         }
-        
+
         // Insert default site settings
         $defaultSettings = [
             ['school_motto', 'Quality Education for a Better Future', 'School motto'],
@@ -152,19 +155,19 @@ function createTables($pdo) {
             ['years_experience', '25', 'Years of experience'],
             ['graduation_rate', '98', 'Graduation rate percentage']
         ];
-        
+
         foreach ($defaultSettings as $setting) {
             $stmt = $pdo->prepare("INSERT IGNORE INTO site_settings (setting_key, setting_value, description) VALUES (?, ?, ?)");
             $stmt->execute($setting);
         }
-        
     } catch (PDOException $e) {
         error_log("Error creating tables: " . $e->getMessage());
     }
 }
 
 // Function to get site setting
-function getSetting($key, $default = '') {
+function getSetting($key, $default = '')
+{
     global $pdo;
     try {
         $stmt = $pdo->prepare("SELECT setting_value FROM site_settings WHERE setting_key = ?");
@@ -177,7 +180,8 @@ function getSetting($key, $default = '') {
 }
 
 // Function to update site setting
-function updateSetting($key, $value) {
+function updateSetting($key, $value)
+{
     global $pdo;
     try {
         $stmt = $pdo->prepare("UPDATE site_settings SET setting_value = ? WHERE setting_key = ?");
@@ -186,4 +190,3 @@ function updateSetting($key, $value) {
         return false;
     }
 }
-?>

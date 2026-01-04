@@ -324,9 +324,9 @@ include 'includes/header.php';
                         <h3>Emmanuel Nyesigomu</h3>
                         <div class="news-date" style="color: var(--accent-green);">Senior Accounting Officer</div>
                         <p style="font-weight: bold; color: var(--primary-blue); margin-bottom: 0.5rem; font-size: 0.95rem;">
-                            <i class="fas fa-building" style="margin-right: 0.3rem;"></i>Mulago National Referral Hospital
+                            <i class="fas fa-building" style="margin-right: 0.3rem;"></i>
                         </p>
-                        <p style="line-height: 1.6; color: var(--text-light);">One of MACOSA's founding members, leading Uganda's healthcare transformation through ethical accounting practices and mentoring youth across East Africa.</p>
+                        <p style="line-height: 1.6; color: var(--text-light);">One of MACOSA's founding members, leading Uganda's digital transformation through ethical accounting practices and mentoring youth across Uganda.</p>
                         <div style="margin-top: 1rem; padding: 0.5rem; background: var(--background-light); border-radius: 8px;">
                             <small style="color: var(--text-light); display: flex; align-items: center;">
                                 <i class="fas fa-map-marker-alt" style="color: var(--accent-green); margin-right: 0.5rem;"></i> 
@@ -1207,7 +1207,7 @@ include 'includes/header.php';
                         <div>
                             <strong>WhatsApp Group</strong><br>
                             Join our MACOSA WhatsApp community<br>
-                            <a href="https://chat.whatsapp.com/KCD6P8GSLoh6aSjO3qbJNd" style="color: var(--primary-blue);">Join MACOSA Group</a>
+                            <a href="https://chat.whatsapp.com/LQssY4Apl1CEvxc7C6YZZT?mode=ac_t" style="color: var(--primary-blue);">Join MACOSA Group</a>
                         </div>
                     </div>
                 </div>

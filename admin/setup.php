@@ -82,7 +82,7 @@ try {
     if ($count == 0) {
         $defaultPassword = hashPassword('admin123');
         $stmt = $pdo->prepare("INSERT INTO admin_users (username, password, full_name, email) VALUES (?, ?, ?, ?)");
-        $stmt->execute(['admin', $defaultPassword, 'Administrator', 'admin@makererecompetent.edu.ug']);
+        $stmt->execute(['admin', $defaultPassword, 'Administrator', 'admin@makererecompetenthighschool.com']);
     }
 
     // Insert default settings
@@ -93,7 +93,7 @@ try {
         ['teachers_count', '45', 'number'],
         ['established_year', '1998', 'number'],
         ['contact_phone', '+256 414 532 123', 'text'],
-        ['contact_email', 'info@makererecompetent.edu.ug', 'email'],
+        ['contact_email', 'info@makererecompetenthighschool.com', 'email'],
         ['facebook_url', 'https://facebook.com/makererecompetent', 'url'],
         ['twitter_url', 'https://twitter.com/makererecompetent', 'url'],
         ['instagram_url', 'https://instagram.com/makererecompetent', 'url']
@@ -110,8 +110,6 @@ try {
     echo "Password: admin123<br>";
     echo "<strong>Please change the default password after login!</strong><br><br>";
     echo "<a href='login.php'>Go to Admin Login</a>";
-
 } catch (PDOException $e) {
     echo "Database setup failed: " . $e->getMessage();
 }
-?>

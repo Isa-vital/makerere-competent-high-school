@@ -2,7 +2,7 @@
 // Homepage for Makerere Competent High School
 $page_title = 'Home';
 $page_description = 'Makerere Competent High School - Excellence in Education. We provide quality secondary education with a focus on academic excellence, character development, and holistic growth.';
-$page_keywords = 'Makerere Competent High School, Uganda secondary school, quality education, Kampala school, excellence in education';
+$page_keywords = 'Makerere Competent High School, Uganda secondary school, quality education, High Schools in Hoima, Best Secondary schools, excellence in education';
 
 include 'includes/header.php';
 
@@ -12,150 +12,227 @@ $galleryImages = getGalleryImages(null, 6);
 ?>
 
 <!-- Hero Carousel Section -->
-<section class="hero-carousel">
-    <div class="carousel-container">
-        <!-- Carousel Slides -->
-        <div class="carousel-slide active" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/gate.jpeg'); background-size: cover; background-position: center;">
-            <div class="container">
-                <div class="hero-content" data-aos="fade-up">
-                    <h2>Welcome to <?php echo SITE_NAME; ?></h2>
-                    <p>Where Excellence Meets Education - Nurturing Future Leaders Through Quality Learning, Character Development, and Academic Excellence</p>
-                    <a href="about.php" class="btn">Learn More About Us</a>
-                    <a href="admissions.php" class="btn btn-secondary">Apply Now</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="carousel-slide" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/WhatsApp\ Image\ 2024-11-13\ at\ 09.24.10.jpeg'); background-size: cover; background-position: center;">
-            <div class="container">
-                <div class="hero-content" data-aos="fade-up">
-                    <h2>Academic Excellence Since 1995</h2>
-                    <p>Over 25 years of providing quality education with a track record of 98% success rate in national examinations</p>
-                    <a href="academics.php" class="btn">Our Programs</a>
-                    <a href="gallery.php" class="btn btn-secondary">View Gallery</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="carousel-slide" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/microscope.jpg'); background-size: cover; background-position: center;">
-            <div class="container">
-                <div class="hero-content" data-aos="fade-up">
-                    <h2>Modern Facilities & Technology</h2>
-                    <p>State-of-the-art laboratories, digital classrooms, sports facilities, and boarding accommodation for an enhanced learning experience</p>
-                    <a href="about.php#facilities" class="btn" style="background: var(--primary-blue); color: var(--neutral-white);">Tour Our Campus</a>
-                    <a href="contact.php" class="btn btn-secondary">Schedule Visit</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="carousel-slide" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/microscope.jpg'); background-size: cover; background-position: center;">
-            <div class="container">
-                <div class="hero-content" data-aos="fade-up">
-                    <h2>Join Our MACOSA Organisation</h2>
-                    <p>Connect with over 2,500 successful graduates worldwide, both within and abroad, in various professional fields</p>
-                    <a href="alumni.php" class="btn">Alumni Stories</a>
-                    <a href="alumni.php#register" class="btn btn-secondary">Join Network</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Carousel Navigation -->
-        <button class="carousel-nav carousel-prev" onclick="previousSlide()">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="carousel-nav carousel-next" onclick="nextSlide()">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        
+<section class="hero-carousel" style="margin-top: 0; padding-top: 0;">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2000">
         <!-- Carousel Indicators -->
         <div class="carousel-indicators">
-            <button class="indicator active" onclick="currentSlide(1)"></button>
-            <button class="indicator" onclick="currentSlide(2)"></button>
-            <button class="indicator" onclick="currentSlide(3)"></button>
-            <button class="indicator" onclick="currentSlide(4)"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
         </div>
+
+        <!-- Carousel Slides -->
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="carousel-bg" style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('assets/images/gate.jpeg') no-repeat center center; background-size: cover;">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-10 mx-auto text-center text-white">
+                                <h1 class="display-3 fw-bold mb-4">Welcome to <?php echo SITE_NAME; ?></h1>
+                                <p class="lead mb-4 px-lg-5">Where Excellence Meets Education - Nurturing Future Leaders Through Quality Learning, Character Development, and Academic Excellence</p>
+                                <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
+                                    <a href="about.php" class="btn btn-light btn-lg px-5"><i class="fas fa-info-circle me-2"></i>Learn More</a>
+                                    <a href="admissions.php" class="btn btn-warning btn-lg px-5"><i class="fas fa-graduation-cap me-2"></i>Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="carousel-bg" style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('assets/images/WhatsApp\ Image\ 2024-11-13\ at\ 09.24.10.jpeg') no-repeat center center; background-size: cover;">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-10 mx-auto text-center text-white">
+                                <h1 class="display-3 fw-bold mb-4">Academic Excellence Since 1998</h1>
+                                <p class="lead mb-4 px-lg-5">Over 25 years of providing quality education with a track record of 98% success rate in national examinations</p>
+                                <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
+                                    <a href="academics.php" class="btn btn-light btn-lg px-5"><i class="fas fa-book me-2"></i>Our Programs</a>
+                                    <a href="gallery.php" class="btn btn-warning btn-lg px-5"><i class="fas fa-images me-2"></i>View Gallery</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <div class="carousel-bg" style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('assets/images/microscope.jpg') no-repeat center center; background-size: cover;">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-10 mx-auto text-center text-white">
+                                <h1 class="display-3 fw-bold mb-4">Modern Facilities & Technology</h1>
+                                <p class="lead mb-4 px-lg-5">State-of-the-art laboratories, digital classrooms, sports facilities, and boarding accommodation for an enhanced learning experience</p>
+                                <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
+                                    <a href="about.php#facilities" class="btn btn-light btn-lg px-5"><i class="fas fa-building me-2"></i>Tour Campus</a>
+                                    <a href="contact.php" class="btn btn-warning btn-lg px-5"><i class="fas fa-calendar me-2"></i>Schedule Visit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+                <div class="carousel-bg" style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('assets/images/microscope.jpg') no-repeat center center; background-size: cover;">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-10 mx-auto text-center text-white">
+                                <h1 class="display-3 fw-bold mb-4">Join Our MACOSA Organisation</h1>
+                                <p class="lead mb-4 px-lg-5">Connect with over 2,500 successful graduates worldwide, both within and abroad, in various professional fields</p>
+                                <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
+                                    <a href="alumni.php" class="btn btn-light btn-lg px-5"><i class="fas fa-users me-2"></i>Alumni Stories</a>
+                                    <a href="alumni.php#register" class="btn btn-warning btn-lg px-5"><i class="fas fa-user-plus me-2"></i>Join Network</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </section>
 
 <!-- About Section -->
-<section class="section features" id="about">
+<section class="pt-5 pb-5 bg-light" id="about">
     <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Why Choose Makerere Competent High School?</h2>
-            <p>We are committed to providing exceptional education that prepares students for success in their academic journey and beyond.</p>
+        <div class="text-center mb-5" data-aos="fade-up">
+
+            <h2 class="display-5 fw-bold text-primary mb-3">Why Choose Makerere Competent High School?</h2>
+            <p class="lead text-muted">We are committed to providing exceptional education that prepares students for success</p>
         </div>
-        
-        <div class="features-grid">
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon">
-                    <i class="fas fa-graduation-cap"></i>
+
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card border-0 shadow-sm h-100 hover-card">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+                            <i class="fas fa-graduation-cap fa-2x text-primary"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Academic Excellence</h4>
+                        <p class="text-muted">Our rigorous curriculum and experienced teachers ensure students achieve their highest potential in both O-Level and A-Level studies.</p>
+                    </div>
                 </div>
-                <h3>Academic Excellence</h3>
-                <p>Our rigorous curriculum and experienced teachers ensure students achieve their highest potential in both O-Level and A-Level studies.</p>
             </div>
-            
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon">
-                    <i class="fas fa-users"></i>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="card border-0 shadow-sm h-100 hover-card">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+                            <i class="fas fa-users fa-2x text-success"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Character Development</h4>
+                        <p class="text-muted">We focus on building strong moral values, leadership skills, and social responsibility in all our students.</p>
+                    </div>
                 </div>
-                <h3>Character Development</h3>
-                <p>We focus on building strong moral values, leadership skills, and social responsibility in all our students.</p>
             </div>
-            
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon">
-                    <i class="fas fa-microscope"></i>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="card border-0 shadow-sm h-100 hover-card">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+                            <i class="fas fa-microscope fa-2x text-warning"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Modern Facilities</h4>
+                        <p class="text-muted">State-of-the-art laboratories, libraries, and classrooms equipped with the latest technology for enhanced learning.</p>
+                    </div>
                 </div>
-                <h3>Modern Facilities</h3>
-                <p>State-of-the-art laboratories, libraries, and classrooms equipped with the latest technology for enhanced learning.</p>
             </div>
-            
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="icon">
-                    <i class="fas fa-medal"></i>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="card border-0 shadow-sm h-100 hover-card">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+                            <i class="fas fa-medal fa-2x text-danger"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Sports & Arts</h4>
+                        <p class="text-muted">Comprehensive extra-curricular programs including sports, music, drama, and various clubs to develop well-rounded individuals.</p>
+                    </div>
                 </div>
-                <h3>Sports & Arts</h3>
-                <p>Comprehensive extra-curricular programs including sports, music, drama, and various clubs to develop well-rounded individuals.</p>
             </div>
-            
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
-                <div class="icon">
-                    <i class="fas fa-handshake"></i>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="card border-0 shadow-sm h-100 hover-card">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+                            <i class="fas fa-handshake fa-2x text-info"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Career Guidance</h4>
+                        <p class="text-muted">Professional guidance and counseling services to help students make informed decisions about their future careers.</p>
+                    </div>
                 </div>
-                <h3>Career Guidance</h3>
-                <p>Professional guidance and counseling services to help students make informed decisions about their future careers.</p>
             </div>
-            
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
-                <div class="icon">
-                    <i class="fas fa-globe"></i>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                <div class="card border-0 shadow-sm h-100 hover-card">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-secondary bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+                            <i class="fas fa-globe fa-2x text-secondary"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Global Perspective</h4>
+                        <p class="text-muted">We prepare students for a globalized world with international partnerships and exchange programs.</p>
+                    </div>
                 </div>
-                <h3>Global Perspective</h3>
-                <p>We prepare students for a globalized world with international partnerships and exchange programs.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Stats Section -->
-<section class="section stats">
+<section class="py-5 bg-gradient-primary text-white">
     <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-                <h3><?php echo getSetting('students_count', '1200+'); ?></h3>
-                <p>Active Students</p>
+        <div class="row text-center g-4">
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                <div class="p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-users fa-3x opacity-75"></i>
+                    </div>
+                    <h2 class="display-4 fw-bold mb-2"><?php echo getSetting('students_count', '1200+'); ?></h2>
+                    <p class="lead mb-0">Active Students</p>
+                </div>
             </div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                <h3><?php echo getSetting('teachers_count', '25+'); ?></h3>
-                <p>Qualified Teachers</p>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-chalkboard-teacher fa-3x opacity-75"></i>
+                    </div>
+                    <h2 class="display-4 fw-bold mb-2"><?php echo getSetting('teachers_count', '85+'); ?></h2>
+                    <p class="lead mb-0">Qualified Teachers</p>
+                </div>
             </div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                <h3><?php echo getSetting('years_experience', '25'); ?></h3>
-                <p>Years of Excellence</p>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                <div class="p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-award fa-3x opacity-75"></i>
+                    </div>
+                    <h2 class="display-4 fw-bold mb-2"><?php echo getSetting('years_experience', '25'); ?></h2>
+                    <p class="lead mb-0">Years of Excellence</p>
+                </div>
             </div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
-                <h3><?php echo getSetting('graduation_rate', '98'); ?>%</h3>
-                <p>Success Rate</p>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                <div class="p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-trophy fa-3x opacity-75"></i>
+                    </div>
+                    <h2 class="display-4 fw-bold mb-2"><?php echo getSetting('graduation_rate', '98'); ?>%</h2>
+                    <p class="lead mb-0">Success Rate</p>
+                </div>
             </div>
         </div>
     </div>
@@ -163,80 +240,85 @@ $galleryImages = getGalleryImages(null, 6);
 
 <!-- News Section -->
 <?php if (!empty($latestNews)): ?>
-<section class="section news" id="news">
-    <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Latest News & Events</h2>
-            <p>Stay updated with the latest happenings at our school</p>
-        </div>
-        
-        <div class="news-grid">
-            <?php foreach ($latestNews as $index => $news): ?>
-            <div class="news-card" data-aos="fade-up" data-aos-delay="<?php echo ($index + 1) * 100; ?>">
-                <?php if (!empty($news['image'])): ?>
-                <img src="<?php echo SITE_URL; ?>/<?php echo UPLOAD_PATH . $news['image']; ?>" alt="<?php echo htmlspecialchars($news['title']); ?>">
-                <?php else: ?>
-                <img src="<?php echo SITE_URL; ?>/assets/images/default-news.jpg" alt="<?php echo htmlspecialchars($news['title']); ?>">
-                <?php endif; ?>
-                
-                <div class="news-card-content">
-                    <h3><?php echo htmlspecialchars($news['title']); ?></h3>
-                    <div class="news-date">
-                        <i class="fas fa-calendar"></i>
-                        <?php echo formatDate($news['created_at']); ?>
-                    </div>
-                    <p><?php echo truncateText(strip_tags($news['content']), 120); ?></p>
-                    <a href="news.php?id=<?php echo $news['id']; ?>" class="btn">Read More</a>
-                </div>
+    <section class="section news" id="news">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Latest News & Events</h2>
+                <p>Stay updated with the latest happenings at our school</p>
             </div>
-            <?php endforeach; ?>
+
+            <div class="news-grid">
+                <?php foreach ($latestNews as $index => $news): ?>
+                    <div class="news-card" data-aos="fade-up" data-aos-delay="<?php echo ($index + 1) * 100; ?>">
+                        <?php if (!empty($news['image'])): ?>
+                            <img src="<?php echo SITE_URL; ?>/<?php echo UPLOAD_PATH . $news['image']; ?>" alt="<?php echo htmlspecialchars($news['title']); ?>">
+                        <?php else: ?>
+                            <img src="<?php echo SITE_URL; ?>/assets/images/default-news.jpg" alt="<?php echo htmlspecialchars($news['title']); ?>">
+                        <?php endif; ?>
+
+                        <div class="news-card-content">
+                            <h3><?php echo htmlspecialchars($news['title']); ?></h3>
+                            <div class="news-date">
+                                <i class="fas fa-calendar"></i>
+                                <?php echo formatDate($news['created_at']); ?>
+                            </div>
+                            <p><?php echo truncateText(strip_tags($news['content']), 120); ?></p>
+                            <a href="news.php?id=<?php echo $news['id']; ?>" class="btn">Read More</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="text-center mt-3">
+                <a href="news.php" class="btn">View All News</a>
+            </div>
         </div>
-        
-        <div class="text-center mt-3">
-            <a href="news.php" class="btn">View All News</a>
-        </div>
-    </div>
-</section>
+    </section>
 <?php endif; ?>
 
 <!-- Gallery Preview Section -->
 <?php if (!empty($galleryImages)): ?>
-<section class="section bg-white" id="gallery">
-    <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>School Life Gallery</h2>
-            <p>Get a glimpse of life at Makerere Competent High School</p>
-        </div>
-        
-        <div class="gallery-grid">
-            <?php foreach ($galleryImages as $index => $image): ?>
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="<?php echo ($index + 1) * 100; ?>" data-category="<?php echo $image['category']; ?>">
-                <img src="<?php echo SITE_URL; ?>/<?php echo UPLOAD_PATH . $image['image']; ?>" alt="<?php echo htmlspecialchars($image['title']); ?>">
-                <div class="gallery-overlay">
-                    <h4><?php echo htmlspecialchars($image['title']); ?></h4>
-                </div>
+    <section class="section bg-white" id="gallery">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>School Life Gallery</h2>
+                <p>Get a glimpse of life at Makerere Competent High School</p>
             </div>
-            <?php endforeach; ?>
+
+            <div class="gallery-grid">
+                <?php foreach ($galleryImages as $index => $image): ?>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="<?php echo ($index + 1) * 100; ?>" data-category="<?php echo $image['category']; ?>">
+                        <img src="<?php echo SITE_URL; ?>/<?php echo UPLOAD_PATH . $image['image']; ?>" alt="<?php echo htmlspecialchars($image['title']); ?>">
+                        <div class="gallery-overlay">
+                            <h4><?php echo htmlspecialchars($image['title']); ?></h4>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="text-center mt-3">
+                <a href="gallery.php" class="btn">View Full Gallery</a>
+            </div>
         </div>
-        
-        <div class="text-center mt-3">
-            <a href="gallery.php" class="btn">View Full Gallery</a>
-        </div>
-    </div>
-</section>
+    </section>
 <?php endif; ?>
 
 <!-- Call to Action Section -->
-<section class="section bg-green">
+<section class="py-5 bg-gradient-primary text-white">
     <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2 style="color: white;">Ready to Join Our School Community?</h2>
-            <p style="color: rgba(255,255,255,0.9);">Take the first step towards an excellent education. Apply now and become part of our growing family of successful students.</p>
-        </div>
-        
-        <div class="text-center">
-            <a href="admissions.php" class="btn" style="margin-right: 15px;">Apply for Admission</a>
-            <a href="contact.php" class="btn btn-secondary">Schedule a Visit</a>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center" data-aos="fade-up">
+                <h2 class="display-5 fw-bold mb-4">Ready to Join Our School Community?</h2>
+                <p class="lead mb-5 opacity-90">Take the first step towards an excellent education. Apply now and become part of our growing family of successful students.</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="admissions.php" class="btn btn-light btn-lg px-5">
+                        <i class="fas fa-graduation-cap me-2"></i>Apply for Admission
+                    </a>
+                    <a href="contact.php" class="btn btn-outline-light btn-lg px-5">
+                        <i class="fas fa-calendar-check me-2"></i>Schedule a Visit
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -248,11 +330,11 @@ $galleryImages = getGalleryImages(null, 6);
             <h2>Get in Touch</h2>
             <p>Have questions? We're here to help!</p>
         </div>
-        
+
         <div class="contact-grid">
             <div class="contact-info" data-aos="fade-right">
                 <h3>Contact Information</h3>
-                
+
                 <div class="contact-item">
                     <div class="icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -262,7 +344,7 @@ $galleryImages = getGalleryImages(null, 6);
                         <?php echo SITE_ADDRESS; ?>
                     </div>
                 </div>
-                
+
                 <div class="contact-item">
                     <div class="icon">
                         <i class="fas fa-phone"></i>
@@ -272,7 +354,7 @@ $galleryImages = getGalleryImages(null, 6);
                         <?php echo SITE_PHONE; ?>
                     </div>
                 </div>
-                
+
                 <div class="contact-item">
                     <div class="icon">
                         <i class="fas fa-envelope"></i>
@@ -282,7 +364,7 @@ $galleryImages = getGalleryImages(null, 6);
                         <a href="mailto:<?php echo SITE_EMAIL; ?>"><?php echo SITE_EMAIL; ?></a>
                     </div>
                 </div>
-                
+
                 <div class="contact-item">
                     <div class="icon">
                         <i class="fas fa-clock"></i>
@@ -294,39 +376,250 @@ $galleryImages = getGalleryImages(null, 6);
                     </div>
                 </div>
             </div>
-            
+
             <div class="contact-form" data-aos="fade-left">
                 <form id="quick-contact-form" data-form-type="contact">
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="email">Email Address *</label>
                         <input type="email" id="email" name="email" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
                         <input type="tel" id="phone" name="phone">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="subject">Subject *</label>
                         <input type="text" id="subject" name="subject" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="message">Message *</label>
                         <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
                     </div>
-                    
+
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    /* Carousel enhancements */
+    .hero-carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    #heroCarousel {
+        position: relative;
+        width: 100%;
+    }
+
+    .carousel-inner {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .carousel-item {
+        position: relative;
+        display: none;
+        float: left;
+        width: 100%;
+        margin-right: -100%;
+        backface-visibility: hidden;
+    }
+
+    .carousel-item.active {
+        display: block;
+    }
+
+    .carousel-bg {
+        width: 100%;
+        height: 600px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .carousel-bg .container {
+        height: 100%;
+    }
+
+    .carousel-item h1 {
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+        color: #fff !important;
+    }
+
+    .carousel-item .lead {
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+        color: #fff !important;
+    }
+
+    /* Fade effect */
+    .carousel-fade .carousel-item {
+        opacity: 0;
+        transition-duration: 1s;
+        transition-property: opacity;
+    }
+
+    .carousel-fade .carousel-item.active,
+    .carousel-fade .carousel-item-next.carousel-item-start,
+    .carousel-fade .carousel-item-prev.carousel-item-end {
+        z-index: 1;
+        opacity: 1;
+    }
+
+    .carousel-fade .active.carousel-item-start,
+    .carousel-fade .active.carousel-item-end {
+        z-index: 0;
+        opacity: 0;
+        transition: opacity 0s 1s;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    }
+
+    .hover-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .hover-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 5%;
+        opacity: 0.8;
+        z-index: 15;
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        opacity: 1;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+    }
+
+    .carousel-indicators {
+        bottom: 20px;
+        z-index: 15;
+    }
+
+    .carousel-indicators button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin: 0 5px;
+        background-color: rgba(255, 255, 255, 0.6);
+        border: none;
+    }
+
+    .carousel-indicators button.active {
+        background-color: #ffd700;
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 1400px) {
+        .carousel-bg {
+            height: 700px;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1399px) {
+        .carousel-bg {
+            height: 600px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .carousel-bg {
+            height: 550px;
+        }
+
+        .carousel-item h1 {
+            font-size: 2.5rem !important;
+        }
+
+        .carousel-item .lead {
+            font-size: 1.1rem !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .carousel-bg {
+            height: 500px;
+        }
+
+        .carousel-item h1 {
+            font-size: 2rem !important;
+        }
+
+        .carousel-item .lead {
+            font-size: 1rem !important;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 8%;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .btn-lg {
+            padding: 0.75rem 2rem !important;
+            font-size: 0.95rem !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .carousel-bg {
+            height: 450px;
+        }
+
+        .carousel-item h1 {
+            font-size: 1.75rem !important;
+        }
+
+        .carousel-item .lead {
+            font-size: 0.95rem !important;
+        }
+
+        .btn-lg {
+            padding: 0.6rem 1.5rem !important;
+            font-size: 0.9rem !important;
+        }
+
+        .d-flex.gap-3 {
+            gap: 0.75rem !important;
+        }
+    }
+</style>
 
 <?php include 'includes/footer.php'; ?>

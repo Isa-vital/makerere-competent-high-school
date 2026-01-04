@@ -1,8 +1,10 @@
+
 <?php
 // Helper functions for Makerere Competent High School website
 
 // Sanitize input data
-function sanitizeInput($data) {
+function sanitizeInput($data)
+{
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -10,22 +12,26 @@ function sanitizeInput($data) {
 }
 
 // Validate email address
-function isValidEmail($email) {
+function isValidEmail($email)
+{
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
 // Generate secure password hash
-function hashPassword($password) {
+function hashPassword($password)
+{
     return password_hash($password, PASSWORD_DEFAULT);
 }
 
 // Verify password
-function verifyPassword($password, $hash) {
+function verifyPassword($password, $hash)
+{
     return password_verify($password, $hash);
 }
 
 // Generate random string
-function generateRandomString($length = 10) {
+function generateRandomString($length = 10)
+{
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -36,15 +42,17 @@ function generateRandomString($length = 10) {
 }
 
 // Format date
-function formatDate($date, $format = 'F j, Y') {
+function formatDate($date, $format = 'F j, Y')
+{
     return date($format, strtotime($date));
 }
 
 // Time ago function
-function timeAgo($date) {
+function timeAgo($date)
+{
     $timestamp = strtotime($date);
     $difference = time() - $timestamp;
-    
+
     if ($difference < 60) {
         return 'just now';
     } elseif ($difference < 3600) {
@@ -62,7 +70,8 @@ function timeAgo($date) {
 }
 
 // Truncate text
-function truncateText($text, $length = 150, $suffix = '...') {
+function truncateText($text, $length = 150, $suffix = '...')
+{
     if (strlen($text) <= $length) {
         return $text;
     }
@@ -70,49 +79,51 @@ function truncateText($text, $length = 150, $suffix = '...') {
 }
 
 // Generate excerpt from content
-function generateExcerpt($content, $length = 150) {
+function generateExcerpt($content, $length = 150)
+{
     $content = strip_tags($content);
     return truncateText($content, $length);
 }
 
 // Upload file function
-function uploadFile($file, $uploadDir = 'assets/images/uploads/', $allowedTypes = ['jpg', 'jpeg', 'png', 'gif']) {
+function uploadFile($file, $uploadDir = 'assets/images/uploads/', $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'])
+{
     if (!isset($file['tmp_name']) || empty($file['tmp_name'])) {
         return ['success' => false, 'message' => 'No file uploaded'];
     }
-    
+
     $fileName = $file['name'];
     $fileSize = $file['size'];
     $fileTmp = $file['tmp_name'];
     $fileError = $file['error'];
-    
+
     // Check for upload errors
     if ($fileError !== 0) {
         return ['success' => false, 'message' => 'File upload error'];
     }
-    
+
     // Get file extension
     $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-    
+
     // Check if file type is allowed
     if (!in_array($fileExt, $allowedTypes)) {
         return ['success' => false, 'message' => 'File type not allowed'];
     }
-    
+
     // Check file size (5MB max)
     if ($fileSize > MAX_FILE_SIZE) {
         return ['success' => false, 'message' => 'File size too large'];
     }
-    
+
     // Generate unique filename
     $newFileName = uniqid('img_') . '.' . $fileExt;
     $uploadPath = $uploadDir . $newFileName;
-    
+
     // Create upload directory if it doesn't exist
     if (!file_exists($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
-    
+
     // Move uploaded file
     if (move_uploaded_file($fileTmp, $uploadPath)) {
         return ['success' => true, 'filename' => $newFileName, 'path' => $uploadPath];
@@ -122,7 +133,8 @@ function uploadFile($file, $uploadDir = 'assets/images/uploads/', $allowedTypes 
 }
 
 // Delete file function
-function deleteFile($filePath) {
+function deleteFile($filePath)
+{
     if (file_exists($filePath)) {
         return unlink($filePath);
     }
@@ -130,14 +142,15 @@ function deleteFile($filePath) {
 }
 
 // Resize image function
-function resizeImage($source, $destination, $maxWidth = 800, $maxHeight = 600, $quality = 85) {
+function resizeImage($source, $destination, $maxWidth = 800, $maxHeight = 600, $quality = 85)
+{
     list($origWidth, $origHeight, $imageType) = getimagesize($source);
-    
+
     // Calculate new dimensions
     $ratio = min($maxWidth / $origWidth, $maxHeight / $origHeight);
     $newWidth = round($origWidth * $ratio);
     $newHeight = round($origHeight * $ratio);
-    
+
     // Create image resource
     switch ($imageType) {
         case IMAGETYPE_JPEG:
@@ -152,10 +165,10 @@ function resizeImage($source, $destination, $maxWidth = 800, $maxHeight = 600, $
         default:
             return false;
     }
-    
+
     // Create new image
     $newImage = imagecreatetruecolor($newWidth, $newHeight);
-    
+
     // Preserve transparency for PNG and GIF
     if ($imageType == IMAGETYPE_PNG || $imageType == IMAGETYPE_GIF) {
         imagealphablending($newImage, false);
@@ -163,10 +176,10 @@ function resizeImage($source, $destination, $maxWidth = 800, $maxHeight = 600, $
         $transparent = imagecolorallocatealpha($newImage, 255, 255, 255, 127);
         imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
     }
-    
+
     // Resize image
     imagecopyresampled($newImage, $sourceImage, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
-    
+
     // Save image
     $result = false;
     switch ($imageType) {
@@ -180,26 +193,28 @@ function resizeImage($source, $destination, $maxWidth = 800, $maxHeight = 600, $
             $result = imagegif($newImage, $destination);
             break;
     }
-    
+
     // Clean up memory
     imagedestroy($sourceImage);
     imagedestroy($newImage);
-    
+
     return $result;
 }
 
 // Send email function
-function sendEmail($to, $subject, $message, $from = SITE_EMAIL) {
+function sendEmail($to, $subject, $message, $from = SITE_EMAIL)
+{
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     $headers .= "From: " . SITE_NAME . " <" . $from . ">" . "\r\n";
     $headers .= "Reply-To: " . $from . "\r\n";
-    
+
     return mail($to, $subject, $message, $headers);
 }
 
 // Get news articles
-function getNews($limit = 10, $featured = false) {
+function getNews($limit = 10, $featured = false)
+{
     global $pdo;
     try {
         $sql = "SELECT * FROM news WHERE status = 'published'";
@@ -207,7 +222,7 @@ function getNews($limit = 10, $featured = false) {
             $sql .= " AND featured = 1";
         }
         $sql .= " ORDER BY created_at DESC LIMIT ?";
-        
+
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$limit]);
         return $stmt->fetchAll();
@@ -217,7 +232,8 @@ function getNews($limit = 10, $featured = false) {
 }
 
 // Get single news article
-function getNewsById($id) {
+function getNewsById($id)
+{
     global $pdo;
     try {
         $stmt = $pdo->prepare("SELECT * FROM news WHERE id = ? AND status = 'published'");
@@ -229,20 +245,21 @@ function getNewsById($id) {
 }
 
 // Get latest news by category
-function getLatestNews($limit = 5, $category = null) {
+function getLatestNews($limit = 5, $category = null)
+{
     global $pdo;
     try {
         $sql = "SELECT * FROM news WHERE status = 'published'";
         $params = [];
-        
+
         if ($category) {
             $sql .= " AND category = ?";
             $params[] = $category;
         }
-        
+
         $sql .= " ORDER BY created_at DESC LIMIT ?";
         $params[] = $limit;
-        
+
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchAll();
@@ -252,24 +269,25 @@ function getLatestNews($limit = 5, $category = null) {
 }
 
 // Get gallery images
-function getGalleryImages($category = null, $limit = null) {
+function getGalleryImages($category = null, $limit = null)
+{
     global $pdo;
     try {
         $sql = "SELECT * FROM gallery WHERE status = 'active'";
         $params = [];
-        
+
         if ($category) {
             $sql .= " AND category = ?";
             $params[] = $category;
         }
-        
+
         $sql .= " ORDER BY sort_order ASC, created_at DESC";
-        
+
         if ($limit) {
             $sql .= " LIMIT ?";
             $params[] = $limit;
         }
-        
+
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchAll();
@@ -279,12 +297,13 @@ function getGalleryImages($category = null, $limit = null) {
 }
 
 // Save contact message
-function saveContactMessage($name, $email, $subject, $message, $phone = '') {
+function saveContactMessage($name, $email, $subject, $message, $phone = '')
+{
     global $pdo;
     try {
         $stmt = $pdo->prepare("INSERT INTO contact_messages (name, email, subject, message, phone) VALUES (?, ?, ?, ?, ?)");
         $result = $stmt->execute([$name, $email, $subject, $message, $phone]);
-        
+
         if ($result) {
             // Send notification email to admin
             $adminMessage = "
@@ -298,7 +317,7 @@ function saveContactMessage($name, $email, $subject, $message, $phone = '') {
             ";
             sendEmail(ADMIN_EMAIL, "New Contact Message - " . $subject, $adminMessage);
         }
-        
+
         return $result;
     } catch (PDOException $e) {
         return false;
@@ -306,12 +325,14 @@ function saveContactMessage($name, $email, $subject, $message, $phone = '') {
 }
 
 // Check if user is admin
-function isAdmin() {
+function isAdmin()
+{
     return isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
 }
 
 // Check if user is logged in
-function requireAdmin() {
+function requireAdmin()
+{
     if (!isAdmin()) {
         header('Location: login.php');
         exit;
@@ -319,7 +340,8 @@ function requireAdmin() {
 }
 
 // Start admin session
-function startAdminSession($userId, $username) {
+function startAdminSession($userId, $username)
+{
     $_SESSION['admin_logged_in'] = true;
     $_SESSION['admin_user_id'] = $userId;
     $_SESSION['admin_username'] = $username;
@@ -327,7 +349,8 @@ function startAdminSession($userId, $username) {
 }
 
 // Destroy admin session
-function destroyAdminSession() {
+function destroyAdminSession()
+{
     unset($_SESSION['admin_logged_in']);
     unset($_SESSION['admin_user_id']);
     unset($_SESSION['admin_username']);
@@ -336,7 +359,8 @@ function destroyAdminSession() {
 }
 
 // Check session timeout
-function checkSessionTimeout() {
+function checkSessionTimeout()
+{
     if (isset($_SESSION['admin_login_time'])) {
         if (time() - $_SESSION['admin_login_time'] > SESSION_TIMEOUT) {
             destroyAdminSession();
@@ -348,7 +372,8 @@ function checkSessionTimeout() {
 }
 
 // Get breadcrumb for current page
-function getBreadcrumb($currentPage) {
+function getBreadcrumb($currentPage)
+{
     $breadcrumbs = [
         'index.php' => 'Home',
         'about.php' => 'About Us',
@@ -358,25 +383,26 @@ function getBreadcrumb($currentPage) {
         'news.php' => 'News & Events',
         'contact.php' => 'Contact Us'
     ];
-    
+
     $result = '<nav class="breadcrumb"><div class="container"><ul>';
     $result .= '<li><a href="index.php">Home</a></li>';
-    
+
     if (isset($breadcrumbs[$currentPage]) && $currentPage !== 'index.php') {
         $result .= '<li>' . $breadcrumbs[$currentPage] . '</li>';
     }
-    
+
     $result .= '</ul></div></nav>';
     return $result;
 }
 
 // Generate meta tags
-function generateMetaTags($title = '', $description = '', $keywords = '', $image = '') {
+function generateMetaTags($title = '', $description = '', $keywords = '', $image = '')
+{
     $siteTitle = !empty($title) ? $title . ' - ' . SITE_NAME : SITE_NAME;
     $siteDescription = !empty($description) ? $description : 'Makerere Competent High School - Excellence in Education';
     $siteKeywords = !empty($keywords) ? $keywords : 'school, education, Uganda, Kampala, high school, secondary school';
     $siteImage = !empty($image) ? SITE_URL . '/' . $image : SITE_URL . '/assets/images/logo.png';
-    
+
     echo "<title>$siteTitle</title>\n";
     echo "<meta name='description' content='$siteDescription'>\n";
     echo "<meta name='keywords' content='$siteKeywords'>\n";
@@ -391,13 +417,14 @@ function generateMetaTags($title = '', $description = '', $keywords = '', $image
 }
 
 // Log activity
-function logActivity($action, $description = '') {
+function logActivity($action, $description = '')
+{
     global $pdo;
     try {
         $userId = $_SESSION['admin_user_id'] ?? 0;
         $userIp = $_SERVER['REMOTE_ADDR'];
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
-        
+
         $stmt = $pdo->prepare("INSERT INTO activity_log (user_id, action, description, ip_address, user_agent) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$userId, $action, $description, $userIp, $userAgent]);
     } catch (PDOException $e) {
@@ -406,55 +433,58 @@ function logActivity($action, $description = '') {
 }
 
 // Convert URLs to links in text
-function makeLinksClickable($text) {
+function makeLinksClickable($text)
+{
     return preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank" rel="noopener">$1</a>', $text);
 }
 
 // Generate pagination
-function generatePagination($currentPage, $totalPages, $baseUrl) {
+function generatePagination($currentPage, $totalPages, $baseUrl)
+{
     if ($totalPages <= 1) return '';
-    
+
     $pagination = '<div class="pagination">';
-    
+
     // Previous button
     if ($currentPage > 1) {
         $pagination .= '<a href="' . $baseUrl . '?page=' . ($currentPage - 1) . '" class="pagination-btn">&laquo; Previous</a>';
     }
-    
+
     // Page numbers
     $start = max(1, $currentPage - 2);
     $end = min($totalPages, $currentPage + 2);
-    
+
     if ($start > 1) {
         $pagination .= '<a href="' . $baseUrl . '?page=1" class="pagination-btn">1</a>';
         if ($start > 2) {
             $pagination .= '<span class="pagination-dots">...</span>';
         }
     }
-    
+
     for ($i = $start; $i <= $end; $i++) {
         $active = ($i == $currentPage) ? ' active' : '';
         $pagination .= '<a href="' . $baseUrl . '?page=' . $i . '" class="pagination-btn' . $active . '">' . $i . '</a>';
     }
-    
+
     if ($end < $totalPages) {
         if ($end < $totalPages - 1) {
             $pagination .= '<span class="pagination-dots">...</span>';
         }
         $pagination .= '<a href="' . $baseUrl . '?page=' . $totalPages . '" class="pagination-btn">' . $totalPages . '</a>';
     }
-    
+
     // Next button
     if ($currentPage < $totalPages) {
         $pagination .= '<a href="' . $baseUrl . '?page=' . ($currentPage + 1) . '" class="pagination-btn">Next &raquo;</a>';
     }
-    
+
     $pagination .= '</div>';
     return $pagination;
 }
 
 // Upload image to gallery
-function uploadImage($file, $folder = 'gallery') {
+function uploadImage($file, $folder = 'gallery')
+{
     $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     $max_size = 5 * 1024 * 1024; // 5MB
     $upload_dir = 'assets/images/uploads/';
@@ -483,7 +513,8 @@ function uploadImage($file, $folder = 'gallery') {
 }
 
 // Generate URL-friendly slug
-function generateSlug($text) {
+function generateSlug($text)
+{
     // Convert to lowercase and replace non-alphanumeric characters with hyphens
     $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $text)));
     // Remove duplicate hyphens and trim hyphens from ends
@@ -493,30 +524,32 @@ function generateSlug($text) {
 }
 
 // Get current admin user info
-function getCurrentAdmin() {
+function getCurrentAdmin()
+{
     global $pdo;
     if (!isset($_SESSION['user_id'])) {
         return null;
     }
-    
+
     $stmt = $pdo->prepare("SELECT * FROM admin_users WHERE id = ?");
     $stmt->execute([$_SESSION['user_id']]);
     return $stmt->fetch();
 }
 
 // Check if user has permission
-function hasPermission($action) {
+function hasPermission($action)
+{
     $user = getCurrentAdmin();
     if (!$user) return false;
-    
+
     // Super admin has all permissions
     if ($user['role'] === 'super_admin') return true;
-    
+
     // Define role permissions
     $permissions = [
         'admin' => ['news_view', 'news_add', 'news_edit', 'gallery_view', 'gallery_add', 'messages_view']
     ];
-    
+
     return in_array($action, $permissions[$user['role']] ?? []);
 }
 ?>

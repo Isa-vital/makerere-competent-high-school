@@ -631,13 +631,16 @@ if (!document.querySelector('#dynamic-animations')) {
 
 // Hero Carousel Functionality
 let currentSlideIndex = 0;
-let carouselInterval;
+let carouselInterval = null;
 
 function initHeroCarousel() {
     const slides = document.querySelectorAll('.carousel-slide');
     const indicators = document.querySelectorAll('.indicator');
 
     if (slides.length === 0) return;
+
+    // Show first slide
+    showSlide(0);
 
     // Start automatic slideshow
     startCarouselAutoplay();
@@ -648,6 +651,9 @@ function initHeroCarousel() {
         carouselContainer.addEventListener('mouseenter', stopCarouselAutoplay);
         carouselContainer.addEventListener('mouseleave', startCarouselAutoplay);
     }
+
+    // Touch support
+    handleCarouselTouch();
 }
 
 function showSlide(index) {
@@ -656,13 +662,18 @@ function showSlide(index) {
 
     if (slides.length === 0) return;
 
+    // Normalize index
+    if (index >= slides.length) {
+        currentSlideIndex = 0;
+    } else if (index < 0) {
+        currentSlideIndex = slides.length - 1;
+    } else {
+        currentSlideIndex = index;
+    }
+
     // Remove active class from all slides and indicators
     slides.forEach(slide => slide.classList.remove('active'));
     indicators.forEach(indicator => indicator.classList.remove('active'));
-
-    // Normalize index
-    if (index >= slides.length) currentSlideIndex = 0;
-    if (index < 0) currentSlideIndex = slides.length - 1;
 
     // Show current slide
     slides[currentSlideIndex].classList.add('active');
@@ -672,18 +683,15 @@ function showSlide(index) {
 }
 
 function nextSlide() {
-    currentSlideIndex++;
-    showSlide(currentSlideIndex);
+    showSlide(currentSlideIndex + 1);
 }
 
 function previousSlide() {
-    currentSlideIndex--;
-    showSlide(currentSlideIndex);
+    showSlide(currentSlideIndex - 1);
 }
 
 function currentSlide(index) {
-    currentSlideIndex = index - 1;
-    showSlide(currentSlideIndex);
+    showSlide(index - 1);
 
     // Restart autoplay
     stopCarouselAutoplay();
@@ -732,12 +740,12 @@ function handleCarouselTouch() {
 
     carouselContainer.addEventListener('touchstart', function(event) {
         touchStartX = event.changedTouches[0].screenX;
-    });
+    }, { passive: true });
 
     carouselContainer.addEventListener('touchend', function(event) {
         touchEndX = event.changedTouches[0].screenX;
         handleCarouselSwipe();
-    });
+    }, { passive: true });
 }
 
 function handleCarouselSwipe() {
@@ -753,9 +761,7 @@ function handleCarouselSwipe() {
     }
 }
 
-// Initialize carousel when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // ...existing code...
-    initHeroCarousel();
-    handleCarouselTouch();
-});
+// Make functions globally accessible
+window.nextSlide = nextSlide;
+window.previousSlide = previousSlide;
+window.currentSlide = currentSlide;
