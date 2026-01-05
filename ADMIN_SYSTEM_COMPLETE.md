@@ -110,8 +110,8 @@
 
 ### **Admin Access**
 1. Navigate to: `yoursite.com/admin/login.php`
-2. **Username**: `admin`
-3. **Password**: `admin123`
+2. **Username**:
+3. **Password**: 
 4. **Important**: Change default password immediately!
 
 ### **Database Setup**

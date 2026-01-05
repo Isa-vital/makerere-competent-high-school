@@ -238,6 +238,113 @@ $galleryImages = getGalleryImages(null, 6);
     </div>
 </section>
 
+<!-- Important Circular Section -->
+<section class="py-5 bg-white" id="circular">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0" data-aos="fade-up">
+                    <div class="card-header text-white py-4" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-white text-primary rounded-circle p-3 me-3">
+                                    <i class="fas fa-bell fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h3 class="mb-1 fw-bold">Important Circular</h3>
+                                    <p class="mb-0 opacity-90"><i class="fas fa-calendar-alt me-2"></i>End of Term III 2025</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-warning text-dark px-3 py-2 mt-2 mt-md-0">
+                                <i class="fas fa-exclamation-triangle me-1"></i>Urgent
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <p class="lead text-muted mb-4">
+                            <strong>Dear Parents/Guardians,</strong> We have important information regarding the end of Term III 2025 and preparations for Term I 2026.
+                        </p>
+
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <div class="text-primary me-3">
+                                        <i class="fas fa-calendar-check fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">Term Opening Date</h5>
+                                        <p class="mb-0 text-muted">Term I 2026 opens on <strong class="text-primary">2nd February, 2026</strong> before 5:00 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <div class="text-success me-3">
+                                        <i class="fas fa-money-bill-wave fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">School Fees Payment</h5>
+                                        <p class="mb-0 text-muted">At least <strong class="text-success">half payment</strong> required before reporting</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <div class="text-warning me-3">
+                                        <i class="fas fa-book fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">Holiday Study Program</h5>
+                                        <p class="mb-0 text-muted">S.4 & S.6 students: <strong class="text-warning">19th January, 2026</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <div class="text-danger me-3">
+                                        <i class="fas fa-tshirt fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">Grooming Standards</h5>
+                                        <p class="mb-0 text-muted">Short hair (½ cm), proper uniform, and domestic wear required</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info border-0" style="background-color: #e7f3ff;">
+                            <div class="d-flex">
+                                <i class="fas fa-info-circle fa-lg text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-2">Key Points to Note:</h6>
+                                    <ul class="mb-0" style="padding-left: 1.2rem;">
+                                        <li>UCE/UACE 2025 examinations completed successfully</li>
+                                        <li>Clear all previous school fees balances during the holiday</li>
+                                        <li>Students must report with required items (uniform, domestic wear, stationery)</li>
+                                        <li>Holiday study program compulsory for S.4 and S.6 candidates</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <a href="circular.php" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-file-alt me-2"></i>Read Full Circular
+                            </a>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <p class="text-muted mb-0">
+                                <small><i class="fas fa-user-tie me-1"></i><strong>Mugisha Leonard</strong> - Headteacher</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- News Section -->
 <?php if (!empty($latestNews)): ?>
     <section class="section news" id="news">
