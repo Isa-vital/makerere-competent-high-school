@@ -131,6 +131,7 @@
 
 ## Phase 10 — GitHub publication
 
-- Publishing the Laravel source to the `laravel-redesign` branch of `Isa-vital/makerere-competent-high-school`, based on the existing `main` commit. The legacy `main` branch is retained for review and migration planning.
+- Published the Laravel source to the `laravel-redesign` branch of `Isa-vital/makerere-competent-high-school` on 15 November 2026, based on the existing `main` commit. The legacy `main` branch is retained for review and migration planning. The initial publication commit is `cb15d1e0750f47f879d8891cccc328125b739658`; its tree contains all 232 selected source and asset files.
 - Added generated Filament public CSS and JS paths to `.gitignore`; these assets should be published during deployment with the project's Composer/Filament build steps. Local `.env`, database records and `storage/app/public` media are excluded from the source push and require deployment-specific configuration/data transfer.
 - Source verification before publication: `php artisan test` passed (6 tests, 33 assertions), `php artisan view:cache` passed and changed PHP files passed lint.
+
