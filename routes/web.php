@@ -7,7 +7,36 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PageController;
+use App\Models\News;
 use Illuminate\Support\Facades\Route;
+
+// Preserve links indexed from the former PHP site.
+foreach ([
+    'index.php' => '/',
+    'default.php' => '/',
+    'about.php' => '/about',
+    'academics.php' => '/academics',
+    'admissions.php' => '/admissions',
+    'gallery.php' => '/gallery',
+    'news.php' => '/news',
+    'alumni.php' => '/alumni',
+    'contact.php' => '/contact',
+    'circular.php' => '/circular',
+] as $legacyPath => $newPath) {
+    Route::permanentRedirect('/'.$legacyPath, $newPath);
+}
+
+Route::get('/sitemap.xml', function () {
+    $pages = ['home', 'about', 'academics', 'admissions', 'gallery', 'news.index', 'alumni', 'contact', 'circular'];
+    $urls = array_map(fn (string $page): string => route($page), $pages);
+
+    foreach (News::published()->pluck('slug') as $slug) {
+        $urls[] = route('news.show', $slug);
+    }
+
+    return response()->view('sitemap', compact('urls'))
+        ->header('Content-Type', 'application/xml; charset=UTF-8');
+})->name('sitemap');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

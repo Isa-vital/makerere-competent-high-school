@@ -21,6 +21,45 @@ use Tests\TestCase;
 
 class CmsWorkflowTest extends TestCase
 {
+    public function test_legacy_public_urls_redirect_and_sitemap_lists_current_pages(): void
+    {
+        foreach ([
+            '/index.php' => '/',
+            '/default.php' => '/',
+            '/about.php' => '/about',
+            '/academics.php' => '/academics',
+            '/admissions.php' => '/admissions',
+            '/gallery.php' => '/gallery',
+            '/news.php' => '/news',
+            '/alumni.php' => '/alumni',
+            '/contact.php' => '/contact',
+            '/circular.php' => '/circular',
+        ] as $old => $new) {
+            $this->get($old)->assertStatus(301)->assertRedirect($new);
+        }
+
+        Schema::create('news', function (Blueprint $table): void {
+            $table->id();
+            $table->string('slug');
+            $table->string('status');
+            $table->timestamp('published_at')->nullable();
+        });
+
+        DB::table('news')->insert([
+            ['slug' => 'published-story', 'status' => 'published', 'published_at' => now()],
+            ['slug' => 'draft-story', 'status' => 'draft', 'published_at' => null],
+        ]);
+
+        $this->get('/sitemap.xml')
+            ->assertOk()
+            ->assertHeader('Content-Type', 'application/xml; charset=UTF-8')
+            ->assertSee('/admissions</loc>', false)
+            ->assertSee('/news/published-story</loc>', false)
+            ->assertDontSee('/news/draft-story</loc>', false);
+
+        $this->get('/contact')->assertOk()->assertSee('rel="canonical"', false);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

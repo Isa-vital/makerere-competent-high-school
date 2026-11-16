@@ -7,6 +7,7 @@
 
     <title>@yield('title', school_detail('name'))</title>
     <meta name="description" content="@yield('description', setting('site_description', 'Excellence in Education at ' . school_detail('name')))">
+    <link rel="canonical" href="{{ url()->current() }}">
     @hasSection('keywords')
         <meta name="keywords" content="@yield('keywords')">
     @endif
