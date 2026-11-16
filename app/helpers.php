@@ -9,6 +9,37 @@ if (! function_exists('setting')) {
     }
 }
 
+if (! function_exists('page_content')) {
+    /** Escaped by Blade at the call site; the configuration is a pre-seed fallback. */
+    function page_content(string $key): string
+    {
+        foreach (config('site_content', []) as $group) {
+            if (isset($group[$key])) {
+                return (string) setting($key, $group[$key][0]);
+            }
+        }
+
+        return '';
+    }
+}
+
+if (! function_exists('page_image')) {
+    /** Resolve only CMS uploads or the bundled editorial images. */
+    function page_image(string $key): string
+    {
+        $path = str_replace('\\', '/', page_content($key));
+        if (preg_match('~^page-images/[A-Za-z0-9._/-]+$~', $path)
+            && ! str_contains($path, '..')
+            && \Illuminate\Support\Facades\Storage::disk('public')->exists($path)) {
+            return asset('storage/' . $path);
+        }
+
+        $fallback = str_contains($key, 'logo') ? 'competentlogo.jpeg' : 'gate.jpeg';
+
+        return asset('assets/images/' . $fallback);
+    }
+}
+
 if (! function_exists('school_detail')) {
     /** Read editable public school details, falling back to environment configuration. */
     function school_detail(string $field): string

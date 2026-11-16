@@ -4,9 +4,9 @@
 @section('description', 'Connect with the Makerere Competent High School alumni community through MACOSA.')
 
 @section('content')
-<section class="interior-hero interior-hero--type macosa-hero" aria-labelledby="macosa-title"><div class="school-shell"><p class="school-kicker">Makerere Competent Old Students Association</p><h1 id="macosa-title">Once a student. <span>Always connected.</span></h1><p>MACOSA brings former students together and keeps them connected to the school community.</p><a class="school-button school-button--gold" href="#register">Join MACOSA <i class="fas fa-arrow-down" aria-hidden="true"></i></a></div></section>
+<section class="interior-hero interior-hero--type macosa-hero" aria-labelledby="macosa-title"><div class="school-shell"><p class="school-kicker">Makerere Competent Old Students Association</p><h1 id="macosa-title">{{ page_content('alumni_hero_title') }} <span>{{ page_content('alumni_hero_highlight') }}</span></h1><p>{{ page_content('alumni_hero_intro') }}</p><a class="school-button school-button--gold" href="#register">Join MACOSA <i class="fas fa-arrow-down" aria-hidden="true"></i></a></div></section>
 
-<section class="school-section macosa-intro" aria-labelledby="macosa-intro-title"><div class="school-shell macosa-intro__layout"><div><p class="school-kicker">Our community</p><h2 id="macosa-intro-title" class="school-heading">A connection that continues.</h2></div><div><p class="school-lead">The school journey does not end when students leave the classroom. MACOSA offers a way to stay in touch with classmates and the wider Makerere Competent community.</p><p>Register your details below to reconnect and share how you would like to contribute.</p></div></div>
+<section class="school-section macosa-intro" aria-labelledby="macosa-intro-title"><div class="school-shell macosa-intro__layout"><div><p class="school-kicker">Our community</p><h2 id="macosa-intro-title" class="school-heading">{{ page_content('alumni_intro_title') }}</h2></div><div><p class="school-lead">{{ page_content('alumni_intro_lead') }}</p><p>{{ page_content('alumni_intro_body') }}</p></div></div>
     @if($alumniStats->isNotEmpty())<div class="school-shell macosa-stats">@foreach($alumniStats as $stat)<div><strong>{{ $stat->value }}{{ $stat->suffix }}</strong><span>{{ $stat->label }}</span></div>@endforeach</div>@endif
 </section>
 
@@ -14,7 +14,7 @@
 
 @if($macosaMessages->isNotEmpty())<section class="school-section macosa-messages" aria-labelledby="macosa-messages-title"><div class="school-shell"><p class="school-kicker">From our leadership</p><h2 id="macosa-messages-title" class="school-heading">Messages to alumni.</h2><div class="macosa-messages__grid">@foreach($macosaMessages as $message)<blockquote><p>{{ $message->quote ?: $message->bio }}</p><footer>{{ $message->name }}@if($message->role), {{ $message->role }}@endif</footer></blockquote>@endforeach</div></div></section>@endif
 
-<section class="school-section macosa-register" id="register" aria-labelledby="macosa-register-title"><div class="school-shell macosa-register__layout"><div><p class="school-kicker">Join the network</p><h2 id="macosa-register-title" class="school-heading">Stay part of the story.</h2><p>Share your details with the school. Registrations are reviewed before they appear as alumni profiles.</p></div><div class="school-form-panel">
+<section class="school-section macosa-register" id="register" aria-labelledby="macosa-register-title"><div class="school-shell macosa-register__layout"><div><p class="school-kicker">Join the network</p><h2 id="macosa-register-title" class="school-heading">{{ page_content('alumni_register_title') }}</h2><p>{{ page_content('alumni_register_body') }}</p></div><div class="school-form-panel">
     @if(session('status'))<p class="school-form-notice" role="status">{{ session('status') }}</p>@endif
     @if($errors->any())<div class="school-form-errors" role="alert"><strong>Please correct the following:</strong><ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
     <form method="POST" action="{{ route('alumni.store') }}">@csrf

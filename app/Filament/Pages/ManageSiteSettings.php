@@ -60,7 +60,7 @@ class ManageSiteSettings extends Page implements HasForms
         if (empty($tabs)) {
             return $form->schema([
                 Forms\Components\Placeholder::make('empty')
-                    ->content('No site settings have been seeded yet. Use the import:legacy command or add rows to the site_settings table.'),
+                    ->content('No site settings have been seeded yet. Run php artisan db:seed --class=SiteContentSeeder --force on the server.'),
             ]);
         }
 
@@ -70,17 +70,23 @@ class ManageSiteSettings extends Page implements HasForms
 
     protected static function componentFor(SiteSetting $s): Forms\Components\Component
     {
-        $label = Str::of($s->setting_key)->replace('_', ' ')->title()->toString();
-        $helper = $s->description ?: null;
+        $label = $s->description ?: Str::of($s->setting_key)->replace('_', ' ')->title()->toString();
+        $helper = null;
 
-        $component = match ($s->setting_type) {
+        $component = str_ends_with($s->setting_key, '_image')
+            ? Forms\Components\FileUpload::make($s->setting_key)
+                ->image()
+                ->disk('public')
+                ->directory('page-images')
+                ->visibility('public')
+            : match ($s->setting_type) {
             'textarea' => Forms\Components\Textarea::make($s->setting_key)->rows(4),
             'number'   => Forms\Components\TextInput::make($s->setting_key)->numeric(),
             'boolean'  => Forms\Components\Toggle::make($s->setting_key),
             'email'    => Forms\Components\TextInput::make($s->setting_key)->email(),
             'url'      => Forms\Components\TextInput::make($s->setting_key)->url(),
             default    => Forms\Components\TextInput::make($s->setting_key),
-        };
+            };
 
         return $component->label($label)->helperText($helper);
     }

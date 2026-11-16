@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
@@ -159,5 +160,24 @@ class CmsWorkflowTest extends TestCase
             $this->assertTrue(Gate::forUser($admin)->allows($ability, $record));
             $this->assertTrue(Gate::forUser($spatieAdmin)->allows($ability, $record));
         }
+    }
+
+    public function test_site_content_seed_preserves_later_cms_edits(): void
+    {
+        Storage::fake('public');
+
+        Artisan::call('db:seed', ['--class' => 'SiteContentSeeder', '--force' => true]);
+
+        $this->assertSame('Where Excellence', page_content('home_hero_title'));
+        $this->assertTrue(Storage::disk('public')->exists('page-images/gate.jpeg'));
+        $this->assertTrue(Storage::disk('public')->exists('page-images/competentlogo.jpeg'));
+
+        SiteSetting::where('setting_key', 'home_hero_title')->firstOrFail()
+            ->update(['setting_value' => 'A custom school headline']);
+
+        Artisan::call('db:seed', ['--class' => 'SiteContentSeeder', '--force' => true]);
+
+        $this->assertSame('A custom school headline', page_content('home_hero_title'));
+        $this->assertSame(1, SiteSetting::where('setting_key', 'home_hero_title')->count());
     }
 }

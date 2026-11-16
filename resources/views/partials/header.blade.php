@@ -33,7 +33,7 @@
     <nav class="navbar navbar-expand-xl school-nav" aria-label="Main navigation">
         <div class="school-shell school-nav__inner">
             <a class="school-brand" href="{{ route('home') }}" aria-label="{{ $siteName }} home">
-                <img src="{{ asset('assets/images/competentlogo.jpeg') }}" alt="" width="58" height="55">
+                <img src="{{ page_image('brand_logo_image') }}" alt="" width="58" height="55">
                 <span class="school-brand__text"><strong>Makerere Competent</strong><span>High School</span></span>
             </a>
             <button class="navbar-toggler school-nav__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle main menu">
