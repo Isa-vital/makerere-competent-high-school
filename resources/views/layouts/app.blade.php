@@ -14,7 +14,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon_io/favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/favicon_io/android-chrome-192x192.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon_io/favicon-16x16.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon_io/favicon-32x32.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon_io/apple-touch-icon.png') }}">
