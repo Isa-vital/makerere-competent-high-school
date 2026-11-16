@@ -6,6 +6,8 @@ use App\Filament\Resources\AdmissionInquiryResource;
 use App\Filament\Resources\ContactMessageResource;
 use App\Models\ContactMessage;
 use App\Models\Gallery;
+use App\Models\AcademicCombination;
+use App\Models\AcademicSubject;
 use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Database\Schema\Blueprint;
@@ -179,5 +181,46 @@ class CmsWorkflowTest extends TestCase
 
         $this->assertSame('A custom school headline', page_content('home_hero_title'));
         $this->assertSame(1, SiteSetting::where('setting_key', 'home_hero_title')->count());
+    }
+
+    public function test_legacy_curriculum_imports_as_inactive_drafts_without_overwriting_edits(): void
+    {
+        Schema::create('academic_subjects', function (Blueprint $table): void {
+            $table->id();
+            $table->string('name');
+            $table->string('code')->nullable();
+            $table->string('level');
+            $table->string('category');
+            $table->integer('sort_order');
+            $table->string('status');
+            $table->timestamps();
+        });
+        Schema::create('academic_combinations', function (Blueprint $table): void {
+            $table->id();
+            $table->string('code');
+            $table->string('name')->nullable();
+            $table->string('subjects')->nullable();
+            $table->string('faculty');
+            $table->integer('sort_order');
+            $table->string('status');
+            $table->timestamps();
+        });
+
+        Artisan::call('db:seed', ['--class' => 'LegacyCurriculumDraftSeeder', '--force' => true]);
+
+        $this->assertSame(19, AcademicSubject::count());
+        $this->assertSame(11, AcademicCombination::count());
+        $this->assertSame(0, AcademicCombination::active()->count());
+        $this->assertSame(0, AcademicSubject::active()->count());
+
+        AcademicCombination::where('code', 'PCM')->firstOrFail()->update([
+            'subjects' => 'Reviewed curriculum',
+            'status' => 'active',
+        ]);
+        Artisan::call('db:seed', ['--class' => 'LegacyCurriculumDraftSeeder', '--force' => true]);
+
+        $this->assertSame(11, AcademicCombination::count());
+        $this->assertSame('Reviewed curriculum', AcademicCombination::where('code', 'PCM')->value('subjects'));
+        $this->assertSame(1, AcademicCombination::active()->count());
     }
 }

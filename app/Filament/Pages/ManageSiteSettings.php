@@ -17,11 +17,13 @@ class ManageSiteSettings extends Page implements HasForms
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
-    protected static ?string $navigationGroup = 'Settings';
+    protected static ?string $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 80;
+    protected static ?int $navigationSort = 5;
 
-    protected static ?string $title = 'Site Settings';
+    protected static ?string $navigationLabel = 'Page Content';
+
+    protected static ?string $title = 'Page Content & Site Settings';
 
     protected static string $view = 'filament.pages.manage-site-settings';
 
