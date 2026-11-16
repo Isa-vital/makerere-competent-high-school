@@ -44,7 +44,7 @@ class HistoryMilestoneResource extends Resource
                 Tables\Columns\TextColumn::make('description')->limit(50)->wrap(),
                 Tables\Columns\TextColumn::make('sort_order')->sortable(),
                 Tables\Columns\TextColumn::make('status')->badge()
-                    ->color(fn(string $s) => $s === 'active' ? 'success' : 'gray'),
+                    ->color(fn(string $state) => $state === 'active' ? 'success' : 'gray'),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')

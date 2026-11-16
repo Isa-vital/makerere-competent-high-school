@@ -58,15 +58,15 @@ class FeesStructureResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('class_level')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('fee_type')->badge()
-                    ->formatStateUsing(fn(string $s) => self::feeTypeOptions()[$s] ?? $s)
-                    ->color(fn(string $s) => str_contains($s, 'bursary') ? 'warning' : 'primary'),
+                    ->formatStateUsing(fn(string $state) => self::feeTypeOptions()[$state] ?? $state)
+                    ->color(fn(string $state) => str_contains($state, 'bursary') ? 'warning' : 'primary'),
                 Tables\Columns\TextColumn::make('amount')->money('UGX')->sortable(),
                 Tables\Columns\TextColumn::make('amount_secondary'),
                 Tables\Columns\TextColumn::make('term'),
                 Tables\Columns\TextColumn::make('year'),
                 Tables\Columns\TextColumn::make('sort_order')->sortable(),
                 Tables\Columns\TextColumn::make('status')->badge()
-                    ->color(fn(string $s) => $s === 'active' ? 'success' : 'gray'),
+                    ->color(fn(string $state) => $state === 'active' ? 'success' : 'gray'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('fee_type')->options(self::feeTypeOptions()),

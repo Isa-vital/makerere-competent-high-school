@@ -223,4 +223,79 @@ class CmsWorkflowTest extends TestCase
         $this->assertSame('Reviewed curriculum', AcademicCombination::where('code', 'PCM')->value('subjects'));
         $this->assertSame(1, AcademicCombination::active()->count());
     }
+
+    public function test_admin_can_list_inactive_academic_combinations(): void
+    {
+        Schema::create('users', function (Blueprint $table): void {
+            $table->id();
+            $table->string('username')->unique();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('role');
+            $table->string('status');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+        Schema::create('academic_combinations', function (Blueprint $table): void {
+            $table->id();
+            $table->string('code');
+            $table->string('name')->nullable();
+            $table->string('subjects')->nullable();
+            $table->string('faculty');
+            $table->integer('sort_order');
+            $table->string('status');
+            $table->timestamps();
+        });
+        Schema::create('academic_subjects', function (Blueprint $table): void {
+            $table->id();
+            $table->string('name');
+            $table->string('code')->nullable();
+            $table->string('level');
+            $table->string('category');
+            $table->integer('sort_order');
+            $table->string('status');
+            $table->timestamps();
+        });
+        Schema::create('admissions', function (Blueprint $table): void {
+            $table->id();
+            $table->string('status');
+        });
+        Schema::create('alumni', function (Blueprint $table): void {
+            $table->id();
+            $table->string('status');
+        });
+
+        AcademicCombination::create([
+            'code' => 'PCM',
+            'subjects' => 'Physics, Chemistry, Mathematics',
+            'faculty' => 'sciences',
+            'sort_order' => 1,
+            'status' => 'inactive',
+        ]);
+        AcademicSubject::create([
+            'name' => 'Mathematics',
+            'code' => 'MATH',
+            'level' => 'O-Level',
+            'category' => 'core',
+            'sort_order' => 1,
+            'status' => 'inactive',
+        ]);
+        $admin = User::create([
+            'username' => 'testadmin',
+            'name' => 'Test Admin',
+            'email' => 'test-admin@example.test',
+            'password' => 'test-password',
+            'role' => 'super_admin',
+            'status' => 'active',
+        ]);
+
+        $this->actingAs($admin)
+            ->get('/admin/academic-combinations')
+            ->assertOk()
+            ->assertSee('PCM');
+        $this->get('/admin/academic-subjects')
+            ->assertOk()
+            ->assertSee('Mathematics');
+    }
 }

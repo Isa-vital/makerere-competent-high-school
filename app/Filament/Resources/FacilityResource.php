@@ -59,12 +59,12 @@ class FacilityResource extends Resource
                 Tables\Columns\ImageColumn::make('image')->disk('public'),
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('category')->badge()
-                    ->formatStateUsing(fn(string $s) => self::categoryOptions()[$s] ?? $s),
+                    ->formatStateUsing(fn(string $state) => self::categoryOptions()[$state] ?? $state),
                 Tables\Columns\IconColumn::make('icon')->icon('heroicon-o-sparkles')
                     ->color(fn($state) => $state ? 'primary' : 'gray'),
                 Tables\Columns\TextColumn::make('sort_order')->sortable(),
                 Tables\Columns\TextColumn::make('status')->badge()
-                    ->color(fn(string $s) => $s === 'active' ? 'success' : 'gray'),
+                    ->color(fn(string $state) => $state === 'active' ? 'success' : 'gray'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('category')->options(self::categoryOptions()),

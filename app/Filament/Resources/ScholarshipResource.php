@@ -55,10 +55,10 @@ class ScholarshipResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('description')->limit(60)->wrap(),
-                Tables\Columns\TextColumn::make('color')->badge()->color(fn(string $s) => $s),
+                Tables\Columns\TextColumn::make('color')->badge()->color(fn(string $state) => $state),
                 Tables\Columns\TextColumn::make('sort_order')->sortable(),
                 Tables\Columns\TextColumn::make('status')->badge()
-                    ->color(fn(string $s) => $s === 'active' ? 'success' : 'gray'),
+                    ->color(fn(string $state) => $state === 'active' ? 'success' : 'gray'),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')

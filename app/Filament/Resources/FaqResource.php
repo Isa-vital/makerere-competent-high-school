@@ -54,10 +54,10 @@ class FaqResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('question')->searchable()->limit(60)->wrap(),
                 Tables\Columns\TextColumn::make('category')->badge()
-                    ->formatStateUsing(fn(string $s) => self::categoryOptions()[$s] ?? $s),
+                    ->formatStateUsing(fn(string $state) => self::categoryOptions()[$state] ?? $state),
                 Tables\Columns\TextColumn::make('sort_order')->sortable(),
                 Tables\Columns\TextColumn::make('status')->badge()
-                    ->color(fn(string $s) => $s === 'active' ? 'success' : 'gray'),
+                    ->color(fn(string $state) => $state === 'active' ? 'success' : 'gray'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('category')->options(self::categoryOptions()),

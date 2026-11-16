@@ -56,14 +56,14 @@ class AcademicCombinationResource extends Resource
                 Tables\Columns\TextColumn::make('code')->weight('bold')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('subjects')->wrap(),
                 Tables\Columns\TextColumn::make('faculty')->badge()
-                    ->formatStateUsing(fn(string $s) => self::facultyOptions()[$s] ?? $s)
-                    ->color(fn(string $s) => match ($s) {
+                    ->formatStateUsing(fn(string $state) => self::facultyOptions()[$state] ?? $state)
+                    ->color(fn(string $state) => match ($state) {
                         'sciences' => 'success', 'arts' => 'warning', 'commercial' => 'info',
                         default => 'gray',
                     }),
                 Tables\Columns\TextColumn::make('sort_order')->sortable(),
                 Tables\Columns\TextColumn::make('status')->badge()
-                    ->color(fn(string $s) => $s === 'active' ? 'success' : 'gray'),
+                    ->color(fn(string $state) => $state === 'active' ? 'success' : 'gray'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('faculty')->options(self::facultyOptions()),

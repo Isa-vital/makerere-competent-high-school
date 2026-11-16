@@ -74,10 +74,10 @@ class LeadershipResource extends Resource
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('role')->searchable(),
                 Tables\Columns\TextColumn::make('category')->badge()
-                    ->formatStateUsing(fn(string $s) => self::categoryOptions()[$s] ?? $s),
+                    ->formatStateUsing(fn(string $state) => self::categoryOptions()[$state] ?? $state),
                 Tables\Columns\TextColumn::make('sort_order')->sortable(),
                 Tables\Columns\TextColumn::make('status')->badge()
-                    ->color(fn(string $s) => $s === 'active' ? 'success' : 'gray'),
+                    ->color(fn(string $state) => $state === 'active' ? 'success' : 'gray'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('category')->options(self::categoryOptions()),
